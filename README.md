@@ -1,0 +1,4 @@
+將android的語音功能與chatgpt進行串接
+可透過android的語音辨識與chatgpt說話，並且chatgpt的回話內容也會透過android的語音合成說出來
+
+使用需要額外在 assets/resource 底下建置 api_key.txt，裡面放oepnAI的key(需到https://platform.openai.com聲請)才能使用

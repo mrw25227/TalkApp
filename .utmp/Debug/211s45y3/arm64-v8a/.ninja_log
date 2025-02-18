@@ -1,14 +1,14 @@
 # ninja log v5
 2106	2408	7610547078971859	C:/git/personal/TalkApp/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/211s45y3/obj/arm64-v8a/libgame.so	6884327dedb061ac
 2	1814	7610547064854892	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1d5d5e6fb26ccf2d
-1586	1883	7610547073706120	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73ce9a1dfb209231
-549	1816	7610547068652067	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	32899af97ad7d675
+1	225	7610596195282044	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73ce9a1dfb209231
 1393	2106	7610547075921270	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1e222c8324372d01
-332	1815	7610547067507213	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	44e8a5855c68bd3b
+549	1816	7610547068652067	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	32899af97ad7d675
 801	1816	7610547070627204	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5107a2f132d6ace0
-1883	2195	7610547076863502	C:/git/personal/TalkApp/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/211s45y3/obj/arm64-v8a/libswappywrapper.so	b8c51a5167b15b9c
+332	1815	7610547067507213	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	44e8a5855c68bd3b
+225	548	7610596198573061	C:/git/personal/TalkApp/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/211s45y3/obj/arm64-v8a/libswappywrapper.so	b8c51a5167b15b9c
 164	1814	7610547064914893	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	f1ddf772a8a56c9b
 1209	1943	7610547074284461	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	31e112cf0afe6ad2
 1009	1917	7610547074019209	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e381d3ecf0c8857
-1	225	7610596195282044	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73ce9a1dfb209231
-225	548	7610596198573061	C:/git/personal/TalkApp/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/211s45y3/obj/arm64-v8a/libswappywrapper.so	b8c51a5167b15b9c
+1	341	7615713006056164	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	73ce9a1dfb209231
+341	729	7615713009953698	C:/git/personal/TalkApp/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/211s45y3/obj/arm64-v8a/libswappywrapper.so	b8c51a5167b15b9c

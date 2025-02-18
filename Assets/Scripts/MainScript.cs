@@ -4,10 +4,14 @@ using UnityEngine.UI;
 using UnityEngine.Android;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.Events;
+using static ApikeyLoader;
 
 public class MainScript : MonoBehaviour
 {
-    const string LANG_CODE = "cmn-Hant-TW";
+    const string STT_LANG_CODE = "cmn-Hant-TW";
+    const string TTS_LANG_CODE = "zh-TW";
+    WakeupManager wakeupManager;
 
     [SerializeField]
     InputField userInput;
@@ -23,6 +27,11 @@ public class MainScript : MonoBehaviour
     const string prompt = "你是一個普通進行對話的AI，只能使用自然語言與使用者對話，請避免提供程式碼、特殊符號或無法朗讀的內容。";
     private string apiKey = "";
 
+    private void Awake()
+    {
+        CheckPermission();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,9 +39,11 @@ public class MainScript : MonoBehaviour
 
         textInputBtn.onClick.AddListener(OnTextInputBtnClick);
         speechInputBtn.onClick.AddListener(StartUserSpeaking);
-        InitSpeechSystem(LANG_CODE);
-        TextAsset textAsset = Resources.Load<TextAsset>("api_key");
-        apiKey = textAsset.text;
+        InitSpeechSystem();
+        
+        apiKey = ApikeyLoader.Instance.GetOpenAIkey();
+        wakeupManager = GetComponent<WakeupManager>();
+        wakeupManager.OnWakeWordDetectedEvent.AddListener(StartUserSpeaking);
     }
     private void OnDestroy()
     {
@@ -40,10 +51,10 @@ public class MainScript : MonoBehaviour
         speechInputBtn.onClick.RemoveAllListeners();
     }
 
-    void InitSpeechSystem(string code)
+    void InitSpeechSystem()
     {
-        TextToSpeech.Instance.Setting(code, 1, 1.5f);
-        SpeechToText.Instance.Setting(code);
+        TextToSpeech.Instance.Setting(TTS_LANG_CODE, 1, 1.5f);
+        SpeechToText.Instance.Setting(STT_LANG_CODE);
         
         SpeechToText.Instance.onResultCallback = OnUserFinalSpeachResult;
         SpeechToText.Instance.onErrorCallback = OnUserSpeachError;
@@ -51,7 +62,7 @@ public class MainScript : MonoBehaviour
 
         TextToSpeech.Instance.onStartCallBack = OnAISpeakStart;
         TextToSpeech.Instance.onDoneCallback = OnAISpeakStop;
-        CheckPermission();
+        //CheckPermission();
     }
 
     void CheckPermission()
@@ -65,6 +76,7 @@ public class MainScript : MonoBehaviour
 
     void OnTextInputBtnClick()
     {
+        wakeupManager?.StopWakeWord();
         string inputText = userInput.text;
         if(inputText.Length == 0)
         {
@@ -94,11 +106,12 @@ public class MainScript : MonoBehaviour
 
     void OnAISpeakStop()
     {
-
+        wakeupManager.ResumeWakeWord();
     }
 
     public void StartUserSpeaking()
     {
+        wakeupManager?.StopWakeWord();
         SpeechToText.Instance.StartRecording();
     }
 
@@ -116,6 +129,7 @@ public class MainScript : MonoBehaviour
     {
         userInput.text = result;
         Debug.LogError("OnUserSpeachError: " + result);
+        wakeupManager.ResumeWakeWord();
     }
 
     void OnUserPartialSpeechResult(string result)
@@ -161,7 +175,7 @@ public class MainScript : MonoBehaviour
                 {
                     AIInput.text = "AI 無法回應，請稍後再試！";
                 }
-                
+                wakeupManager.ResumeWakeWord();
             }
         }
     }
